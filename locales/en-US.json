@@ -1,0 +1,4 @@
+{
+    "http_error_default_message": "An unexpected error has occurred.",
+    "http_error_unauthorized": "An unexpected error has occurred."
+}
