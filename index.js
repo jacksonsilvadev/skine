@@ -43,13 +43,15 @@ const start = (instances, done) => {
   if (instances.http) {
     instances.http.start(done);
   }
+
+  return done;
 };
 
 const init = async (config) => {
   const instances = {
     logger: null,
     http: null,
-    database: null,
+    database: {},
     jobs: null,
     services: {},
     queue: {},
