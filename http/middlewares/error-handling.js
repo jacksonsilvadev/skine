@@ -16,7 +16,7 @@ module.exports = (config) => {
   return async (err, req, res, next) => {
     let status = 500;
     // eslint-disable-next-line no-underscore-dangle
-    let message = req.i18n.__('http_error_default_message');
+    let { message } = err;
 
     if (err instanceof UnauthorizedError) {
       status = 401;

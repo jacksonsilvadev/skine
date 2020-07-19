@@ -10,6 +10,7 @@ module.exports.init = async (options) => {
     processName: options.process,
     durable: true,
     autoDelete: false,
+    logger: options.logger,
   };
 
   const env = options.environment === 'production'

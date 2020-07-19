@@ -26,7 +26,6 @@ module.exports = async (req, res, next) => {
 
   if (authorization) {
     const response = await authProvider.authenticate(authorization);
-
     if (!response || !response.user) {
       // eslint-disable-next-line no-underscore-dangle
       const message = req.i18n.__('http_error_unauthorized');

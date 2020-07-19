@@ -8,10 +8,11 @@ const isRoute = (object) => {
   return keys.includes('path') && keys.includes('handler');
 };
 
-const createPermissionsHandler = (permissions, publicRoute) => async (req, res, next) => {
+const createPermissionsHandler = (permissions, publicRoute, profiles) => async (req, res, next) => {
   try {
     req.permissions = permissions;
     req.publicRoute = publicRoute;
+    req.profiles = profiles;
     next();
   } catch (err) {
     next(err);
@@ -26,8 +27,8 @@ const createAuthorizationMiddleware = (config) => async (req, res, next) => {
   }
 };
 
-const getAuthorizationMiddlewares = (config, permissions, publicRoute) => [
-  createPermissionsHandler(permissions, publicRoute),
+const getAuthorizationMiddlewares = (config, permissions, profiles, publicRoute) => [
+  createPermissionsHandler(permissions, publicRoute, profiles),
   createAuthorizationMiddleware(config),
 ];
 
@@ -41,12 +42,12 @@ const getRouteMiddleware = (handler) => async (req, res, next) => {
 
 const includeRouteToRouter = (route, router, config) => {
   const {
-    method, path, handler, permissions, publicRoute,
+    method, path, handler, permissions, profiles, publicRoute,
   } = route;
   const middlewares = route.middlewares || [];
 
   const handlers = [
-    ...getAuthorizationMiddlewares(config, permissions, publicRoute),
+    ...getAuthorizationMiddlewares(config, permissions, profiles, publicRoute),
     ...middlewares,
     getRouteMiddleware(handler),
   ];

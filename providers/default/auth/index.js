@@ -9,10 +9,11 @@ const authenticate = async (authToken) => {
     return null;
   }
 
-  const result = await axios.post(`${AUTH_API_HOST}/validate-user`, {
+  const result = await axios.post(`${AUTH_API_HOST}validate-user`, {
     authToken,
   });
-  return result;
+
+  return result.data;
 };
 
 module.exports = {
