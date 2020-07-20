@@ -12,7 +12,7 @@ const createPermissionsHandler = (permissions, publicRoute, profiles) => async (
   try {
     req.permissions = permissions;
     req.publicRoute = publicRoute;
-    req.profiles = profiles;
+    req.profiles = profiles || [];
     next();
   } catch (err) {
     next(err);
