@@ -66,8 +66,8 @@ const createChannel = async (connection, options) => {
 const assertQueue = async (connection, channel, options, environment) => {
   try {
     const deadletterExchange = environment === 'prod'
-      ? 'laja.deadletter.fanout'
-      : 'laja.deadletter.dev.fanout';
+      ? 'profiz.deadletter.fanout'
+      : 'profiz.deadletter.dev.fanout';
     await channel.assertQueue(options.queueName, {
       autoDelete: options.autoDelete || false,
       durable: options.durable || false,
