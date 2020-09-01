@@ -1,5 +1,7 @@
 const userIsAuthenticated = (user) => user && user.isActive;
-const userHasProfileGranted = (user, profiles) => user && user.profile && (profiles.includes(user.profile) || user.profile === 'admin');
+const userHasProfileGranted = (user, profiles) => {
+  return user && user.profile && (profiles.includes(user.profile.code) || user.profile.code === 'admin')
+};
 
 const isRouteAllowed = (profiles) => (profiles[0] === '*');
 
@@ -7,7 +9,7 @@ const userHasProfile = (user, profiles) => {
   if(!profiles.length) {
     return userIsAuthenticated(user)
   }
-
+  console.log(userHasProfileGranted(user, profiles))
   return userIsAuthenticated(user)
   && (isRouteAllowed(profiles) || userHasProfileGranted(user, profiles))
 }
