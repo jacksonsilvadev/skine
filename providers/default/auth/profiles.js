@@ -3,7 +3,13 @@ const userHasProfileGranted = (user, profiles) => user && user.profile && (profi
 
 const isRouteAllowed = (profiles) => (profiles[0] === '*');
 
-const userHasProfile = (user, profiles) => userIsAuthenticated(user)
-  && (isRouteAllowed(profiles) || userHasProfileGranted(user, profiles));
+const userHasProfile = (user, profiles) => {
+  if(!profiles.length) {
+    return userIsAuthenticated(user)
+  }
+
+  return userIsAuthenticated(user)
+  && (isRouteAllowed(profiles) || userHasProfileGranted(user, profiles))
+}
 
 module.exports = { userHasProfile };

@@ -8,7 +8,7 @@ module.exports = async (req, res, next) => {
     user, permissions, profiles, publicRoute,
   } = req;
 
-  if (userHasPermission(user, permissions) || userHasProfile(user, profiles) || (publicRoute || user)) {
+  if ((userHasPermission(user, permissions) && userHasProfile(user, profiles)) || (publicRoute)) {
     next();
   } else {
     const username = user && user.name ? user.name : 'Anonymous';

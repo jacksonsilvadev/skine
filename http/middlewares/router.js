@@ -10,7 +10,7 @@ const isRoute = (object) => {
 
 const createPermissionsHandler = (permissions, publicRoute, profiles) => async (req, res, next) => {
   try {
-    req.permissions = permissions;
+    req.permissions = permissions || [];
     req.publicRoute = publicRoute;
     req.profiles = profiles || [];
     next();
