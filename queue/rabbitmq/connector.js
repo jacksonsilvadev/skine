@@ -65,7 +65,7 @@ const createChannel = async (connection, options) => {
 
 const assertQueue = async (connection, channel, options, environment) => {
   try {
-    const deadletterExchange = environment === 'prod'
+    const deadletterExchange = environment === 'prod' || environment === 'production'
       ? 'profiz.deadletter.fanout'
       : 'profiz.deadletter.dev.fanout';
     await channel.assertQueue(options.queueName, {

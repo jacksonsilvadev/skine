@@ -9,7 +9,7 @@ const userHasProfile = (user, profiles) => {
   if(!profiles.length) {
     return userIsAuthenticated(user)
   }
-  console.log(userHasProfileGranted(user, profiles))
+
   return userIsAuthenticated(user)
   && (isRouteAllowed(profiles) || userHasProfileGranted(user, profiles))
 }

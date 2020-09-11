@@ -7,7 +7,7 @@ module.exports = async (req, res, next) => {
   const {
     user, permissions, profiles, publicRoute,
   } = req;
-  console.log(userHasPermission(user, permissions), userHasProfile(user, profiles))
+
   if ((userHasPermission(user, permissions) && userHasProfile(user, profiles)) || (publicRoute)) {
     next();
   } else {
