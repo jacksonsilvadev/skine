@@ -1,5 +1,6 @@
 const dotenv = require('dotenv');
 const path = require('path');
+console.log(process.env.NODE_ENV)
 
 const nodeEnv = process.env.NODE_ENV || 'development';
 const base = __dirname;
@@ -17,6 +18,7 @@ if (['development', 'dev'].includes(nodeEnv)) {
     path: path.resolve(base, '.env.production'),
   });
 }
+console.log(process.env.AUTH_API_HOST)
 
 module.exports = {
   auth: {
