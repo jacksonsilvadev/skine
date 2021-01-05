@@ -46,6 +46,7 @@ const buildSequelizeOptions = (config) => {
   const options = {
     host: config.host,
     dialect,
+    port: config.port || 3306,
     dialectOptions: {
       timezone: TIME_ZONE,
       typeCast: true,
