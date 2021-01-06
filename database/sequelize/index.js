@@ -36,6 +36,10 @@ module.exports = async (options) => {
   return {
     Op,
     models: sequelize.models,
+    fn: sequelize.fn,
+    col:sequelize.col,
+    literal: sequelize.literal,
+    where: sequelize.where,
     queryBuilders,
     inTransaction: (func, externalTransaction) => transaction(sequelize, func, externalTransaction),
   };
