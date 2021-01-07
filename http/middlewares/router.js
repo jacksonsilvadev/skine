@@ -45,12 +45,21 @@ const includeRouteToRouter = (route, router, config) => {
     method, path, handler, permissions, profiles, publicRoute,
   } = route;
   const middlewares = route.middlewares || [];
+  let handlers = []
 
-  const handlers = [
-    ...getAuthorizationMiddlewares(config, permissions, profiles, publicRoute),
-    ...middlewares,
-    getRouteMiddleware(handler),
-  ];
+  if (config.withoutAuth) {
+    handlers = [
+      ...middlewares,
+      getRouteMiddleware(handler),
+    ];
+  } else {
+    handlers = [
+      ...getAuthorizationMiddlewares(config, permissions, profiles, publicRoute),
+      ...middlewares,
+      getRouteMiddleware(handler),
+    ];
+  }
+  
 
   if (!method || method === 'GET') {
     router.get(path, ...handlers);
