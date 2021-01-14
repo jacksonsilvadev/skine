@@ -18,7 +18,8 @@ const authenticate = async (authToken) => {
     
     return result.data;
   } catch (error) {
-    const message = error.response.data.message
+    const message = error.response ? error.response.data.message: ""
+    
     if(message === 'jwt expired'){
       throw new UnauthorizedError(message)
     }
