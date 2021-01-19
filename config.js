@@ -16,6 +16,10 @@ if (['development', 'dev'].includes(nodeEnv)) {
   dotenv.config({
     path: path.resolve(base, '.env.production'),
   });
+} else if (['qa', 'quality'].includes(nodeEnv)) {
+  dotenv.config({
+    path: path.resolve(base, '.env.qa'),
+  });
 }
 
 module.exports = {
